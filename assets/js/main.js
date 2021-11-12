@@ -8,12 +8,12 @@
   "use strict";
 
   $(window).on('load', function () {
-    data.forEach((element,index) => {
+    data.forEach((element, index) => {
       var html = `
-    <div class="col-md-3">
+    <div class="col-lg-3 col-md-4 col-sm-6">
         <div class="item-result" data-id="${element["id"]}">
             <div class="item-header">
-                <p class="item-title">(${index+1}) ${element["title"]}</p>
+                <p class="item-title">(${index + 1}) ${element["title"]}</p>
                 <strong class="item-note"> ${element["note"]}</strong>
                 <p> (${element["lesson"]})</p>
 
@@ -27,26 +27,76 @@
 
     var btnAdd = $('#btnAdd');
     var inputText = $('#inputText');
-    var itemBox = $('.item-result');
+    var btndelKey = $('.delKey');
+
+
     var myModal = $('#myModal');
     var btnClose = $("#close");
 
 
     inputText.keyup(function () {
-      let data = this.value;
-      if (data.trim() != 0) {
+      let dataKey = this.value.toLowerCase();
+      data.filter((item) => {
+        $('.box-result').empty();
+        return (
+          item.title.toLowerCase().includes(dataKey) ||
+          item.note.toLowerCase().includes(dataKey)
+        );
+      }).forEach((element, index) => {
+        var html = `
+      <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="item-result" data-id="${element["id"]}">
+              <div class="item-header">
+                  <p class="item-title">(${index + 1}) ${element["title"]}</p>
+                  <strong class="item-note"> ${element["note"]}</strong>
+                  <p> (${element["lesson"]})</p>
+  
+              </div>
+          </div>
+      </div>
+      
+      `;
+        $('.box-result').append(html);
+      });
+      console.log(dataKey)
+      if (dataKey.trim() != 0) {
         btnAdd.addClass("active");
+        btndelKey.css({ display: "block" })
       }
       else {
         btnAdd.removeClass("active");
+        btndelKey.css({ display: "none" })
+
       }
     });
 
     btnAdd.click(function () {
       alert("Handler for .click() called.");
     });
-
-    itemBox.click(function (e) {
+    btndelKey.click(function () {
+      inputText.val(null);
+      $(this).css({ display: "none" })
+      $('.box-result').empty();
+      setTimeout(100);
+      data.forEach((element, index) => {
+        var html = `
+      <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="item-result" data-id="${element["id"]}">
+              <div class="item-header">
+                  <p class="item-title">(${index + 1}) ${element["title"]}</p>
+                  <strong class="item-note"> ${element["note"]}</strong>
+                  <p> (${element["lesson"]})</p>
+  
+              </div>
+          </div>
+      </div>
+      
+      `;
+        $('.box-result').append(html);
+      });
+    });
+   
+    $('.box-result').on('click', ".item-result", function () {
       let dataID = $(this).attr('data-id');
       $('.grammar-item-title').empty();
       $('.grammar-item-title-mean').empty();
@@ -74,7 +124,9 @@
 
 
       myModal.css({ display: "block" })
-    });
+
+    })
+
     btnClose.click(function (e) {
       let dataID = $(this).attr('data-id');
       myModal.css({ display: "none" })
