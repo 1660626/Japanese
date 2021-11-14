@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
-// const PORT = 3000
+const PORT = 3000
 
 var data = {},
   dir = __dirname + '/data/';
