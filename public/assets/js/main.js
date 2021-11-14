@@ -370,22 +370,24 @@
     let number =1;
     for (const key in data) {
       data[key].forEach((e, i) => {
-
-        var html = `
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="item-result" name-voice="${e["voice"]}">
-                        <div class="item-header">
-                            <p class="item-title">(${number}) ${e["japanese"]}</p>
-                            <p> (${e["pinyin"]})</p>
-                            <strong class="item-note"> ${e["vietnamese"]}</strong>
-                            <audio id="myAudio"  data-id="${e["id"]}">
-                          </audio>
-                        </div>
-                    </div>
-                </div> `;
-        // console.log(html)
-        $('#sentences .box-result').append(html);
-        number++
+        sleep(500).then(() => {
+          var html = `
+          <div class="col-lg-3 col-md-4 col-sm-6">
+              <div class="item-result" name-voice="${e["voice"]}">
+                  <div class="item-header">
+                      <p class="item-title">(${number}) ${e["japanese"]}</p>
+                      <p> (${e["pinyin"]})</p>
+                      <strong class="item-note"> ${e["vietnamese"]}</strong>
+                      <audio id="myAudio"  data-id="${e["id"]}">
+                    </audio>
+                  </div>
+              </div>
+          </div> `;
+  // console.log(html)
+  $('#sentences .box-result').append(html);
+  number++
+      });
+        
 
       });
     }
@@ -394,6 +396,14 @@
     // There was an error
     console.warn('Something went wrong.', err);
   });
+
+
+  function sleep (time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
+  }
+  
+  // Usage!
+ 
 })(jQuery);
 
                             // <source src="https://mina.mazii.net/db/phrase/${e["voice"]}.mp3" type="audio/mpeg">
