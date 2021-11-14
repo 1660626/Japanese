@@ -214,7 +214,7 @@
         // ($(this).children().children("#myAudio")).trigger("play");
       // fetch('http://localhost:3000/voice/'+ $(this).attr('name-voice'))+".mp3"
       var name =$(this).attr('name-voice');
-        $(this).children().children("#myAudio").append(`F <source src="http://localhost:3000/voice/${name}.mp3" type="audio/mpeg">`);
+        $(this).children().children("#myAudio").append(`F <source src="http://localhost:36535/voice/${name}.mp3" type="audio/mpeg">`);
       
         ($(this).children().children("#myAudio")).trigger("play");
       
@@ -361,7 +361,7 @@
 
   }
 
-  fetch('http://localhost:3000/noti').then(function (response) {
+  fetch('http://localhost:36535/noti').then(function (response) {
     // The API call was successful!
     return response.json();
   }).then(function (data) {
