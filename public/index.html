@@ -2,135 +2,49 @@
 <html lang="en">
 
 <head>
-    <meta property="og:url"                content="https://koyjapanese.herokuapp.com/" />
-<meta property="og:type"               content="article" />
-<meta property="og:title" content="KoyJP - Từ điển Nhật Việt, Việt Nhật, Từ điển tiếng Nhật miễn phí" class="site-title">
-<meta property="og:description" content="Từ điển tiếng Nhật, Nhật Việt, Việt Nhật, Nhật Nhật, thông dụng nhất Việt Nam, với hàng trăm ngàn mục từ, ngữ pháp, hán tự. Đầy đủ các tiện ích để bạn học tiếng Nhật dễ dàng. Mazii miễn phí để bạn sử dụng. Nội dung được cập nhật hàng ngày." class="site-desc">
-<meta property="og:image"              content="./assets//img/koyLogo.png" />
-    <meta name="google-site-verification" content="Znzle8FIZr2NIc11sb-5hdZSTf0jObQtZiLpECO2Jpk" />
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>日本語を検索する</title>
-    <link rel="icon" href="./assets//img/koyLogo.png">
-    <!-- Vendor CSS Files -->
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap/css/bootstrap-grid.css" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta property="og:title" content="KoyJP - Từ điển Nhật Việt, Việt Nhật, Từ điển tiếng Nhật miễn phí"
+    class="site-title">
+  <meta property="og:description"
+    content="Từ điển tiếng Nhật, Nhật Việt, Việt Nhật, Nhật Nhật, thông dụng nhất Việt Nam, với hàng trăm ngàn mục từ, ngữ pháp, hán tự. Đầy đủ các tiện ích để bạn học tiếng Nhật dễ dàng. Mazii miễn phí để bạn sử dụng. Nội dung được cập nhật hàng ngày."
+    class="site-desc">
+  <meta property="og:image" content="%PUBLIC_URL%/assets/img/koyLogo.png" />
+  <meta name="google-site-verification" content="Znzle8FIZr2NIc11sb-5hdZSTf0jObQtZiLpECO2Jpk" />
+  <link rel="icon" href="%PUBLIC_URL%/assets/img/koyLogo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/assets/img/koyLogo.png" />
 
-    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/vendor/awesome/font-awesome.min.css" rel="stylesheet">
-    <link href="assets/vendor/freedoka/fredoka-one.css" rel="stylesheet">
-    <!-- <script src='./assets/js/Draggable.js'></script> -->
-    <script src="assets/js/interact.min.js"></script>
-    <script src="assets/data.js"></script>
+  <title>日本語 の KoyJP</title>
 
 
+  <link href="%PUBLIC_URL%/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="%PUBLIC_URL%/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="%PUBLIC_URL%/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="%PUBLIC_URL%/assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="%PUBLIC_URL%/assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="%PUBLIC_URL%/assets/vendor/awesome/font-awesome.min.css" rel="stylesheet">
+  <link href="%PUBLIC_URL%/assets/vendor/freedoka/fredoka-one.css" rel="stylesheet">
 </head>
 
 <body>
-
-
-    <div class="search-body ">
-
-
-
-        <div class="box-search">
-            <div class="box w-100 vh-100">
-                <div class="head">
-                    <div>
-                        <h2 class="font-weight-bold">日本語を検索する </h2>
-                        <div class="inputfield">
-                            <input id="inputText" type="text" placeholder="日本語.....">
-                            <input id="inputTextMean" type="text" placeholder="ベトナム語.....">
-
-                            <span class="delKey" i>&times;</span>
-                            <button id="btnAdd" class="btn custom-btn "><i class="fa fa-plus"
-                                    aria-hidden="true"></i></button>
-                        </div>
-                    </div>
-                    <div class="clock">
-                        <p id="time">1:20:00</p>
-                        <p id="day">SUN</p>
-                        <p id="date">9 May 2021</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div attr-tab="sentences" class="tablink col-lg-1 col-sm-2 col-4">文</div>
-                    <!-- onclick="openPage('sentences', this, 'red')" -->
-                    <div attr-tab="grammar" class="tablink col-lg-1 col-sm-2 col-4">文法</div>
-                    <!-- onclick="openPage('grammar', this, 'green')" -->
-                </div>
-
-                <div id="sentences" class="tabcontent">
-                    <div class="box-result row ">
-
-
-                    </div>
-                </div>
-                <div id="grammar" class="tabcontent">
-                    <div class="box-result row ">
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
 
 
 
-                    </div>
-                </div>
-
-
-            </div>
-
-        </div>
-    </div>
-    <div id="myModal" class="modal">
-
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close" id="close">&times;</span>
-            <div class="gr-title">
-                <div class="grammar-item-title "></div>
-                <div class="grammar-item-title-mean"></div>
-            </div>
-
-            <div class="item-description mt-2">
-
-                <div class="gr-use-description">
-
-                </div>
-
-                <div class="gr-example">
-                    <div class="example">
-
-                    </div>
-                    <div class="example-mean">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Vendor JS Files -->
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/vendor/jquery/jquery.min.js"></script>
-    <script src="assets/vendor/venobox/venobox.min.js"></script>
-    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-
-
-    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-
-
-    <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
-
-
+  <script src="%PUBLIC_URL%/assets/vendor/aos/aos.js"></script>
+  <script src="%PUBLIC_URL%/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="%PUBLIC_URL%/assets/vendor/jquery/jquery.min.js"></script>
+  <script src="%PUBLIC_URL%/assets/vendor/venobox/venobox.min.js"></script>
+  <script src="%PUBLIC_URL%/assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="%PUBLIC_URL%/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
 </body>
+
+
 
 </html>

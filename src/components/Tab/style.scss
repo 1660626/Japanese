@@ -1,0 +1,122 @@
+.container-tab {
+    .tab-list {
+        height: 50px;
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 18px;
+        .tabs {
+            background-color: #fff;
+            font-family: "RocknRoll One", cursive;
+            border-radius: 20px 20px 0 0;
+            width: 20%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 24px;
+            &:hover {
+                background: #eeeded;
+            }
+            &.active-tabs {
+                border: 1px dashed red;
+                border-width: 1px 1px 0 1px;
+            }
+        }
+    }
+
+    .content-container {
+        .content {
+            display: none;
+            background-color: #fff;
+            padding: 10px;
+            border: 1px dashed red;
+            &.active-content {
+                display: block;
+            }
+        }
+    }
+}
+
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+#myModal{
+    &.active{
+       display:block; 
+    }
+    
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 40px;
+    border: 1px solid #888;
+    width: 80%;
+    max-height: 750px;
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 28px;
+        font-weight: bold;
+        &:hover,
+        &:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    }
+
+    .gr-title {
+        width: 100%;
+        background-color: #f6f7f9;
+        border: 2px solid #4d81ed;
+        text-align: center;
+        margin-top: 10px;
+        color: #4d81ed;
+        font-size: 18px;
+        padding: 20px;
+    }
+    .item-description {
+        overflow: auto;
+        .gr-use-description {
+            background-color: #f6f7f9;
+            padding: 16px;
+            border-left: 3px solid #4d81ed;
+            color: #3f3f40;
+            line-height: 32px;
+            padding-bottom: 10px;
+        }
+        .gr-example {
+            padding: 16px;
+            padding-left: 24px;
+            .example {
+                color: rgba(196, 19, 19, 1);
+                font-family: "RocknRoll One", cursive;
+                font-size: 20px;
+            }
+            .example-mean {
+                color: grey;
+                font-style: italic;
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+.display-linebreak {
+    white-space: pre-line;
+  }
