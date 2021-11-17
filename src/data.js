@@ -1,3 +1,4 @@
+/* eslint-disable no-sparse-arrays */
 var data = [
     {
         id: 1,
@@ -81,10 +82,8 @@ var data = [
         title: "います",
         body: "",
         note: "Có... (sở hữu)",
-        description: [
-            `<strong>N</strong> が います 
-            Dùng để biểu thị sự sở hữu đối với người và động vật. Không dùng cho đồ vật.
-       `],
+        description: [<><strong>N</strong> が います  <br />
+            Dùng để biểu thị sự sở hữu đối với người và động vật. Không dùng cho đồ vật.</>],
         example: [
             [
                 "私は猫が二匹います。",
@@ -141,6 +140,7 @@ var data = [
         title: "～で",
         body: "",
         note: "Tại, ở, vì, bằng, với (khoảng thời gian)",
+      
         description: [
             `- Diễn tả nơi xảy ra hành động. 
             - Diễn tả nơi xảy ra sự kiện.
@@ -164,7 +164,7 @@ var data = [
         ],
         exampleMean: [
             [
-                "Tôi ｃhuyển sang xe lửa đi Okayama tại Himeji.",
+                "Tôi chuyển sang xe lửa đi Okayama tại Himeji.",
                 "Ngày kia ở trung tâm thể dục sẽ có đại hội thể thao.",
                 "Vì sự cố nên xe buýt đang bị dừng.",
                 "Cái máy đó chạy bằng điện.",
@@ -180,17 +180,16 @@ var data = [
         title: "～に/へ",
         body: "",
         note: "Chỉ hướng, thời điểm",
-        description: [
-            `- N（時間又は場所 / Thời gian hoặc địa điểm）＋に/へ 
-        - Dùng để chỉ địa điểm.  
-        - Dùng để chỉ thời điểm.  
-        - Dùng để chỉ hướng đến ai.  
-        - Khi muốn nói về thời điểm mà một hành động nào đó xảy ra, chúng ta thêm trợ từ「に」vào sau danh từ chỉ thời gian. Dùng「に」đối với những hành động diễn ra trong thời gian ngắn. 
-        - 「に」được dùng khi danh từ chỉ thời gian có con số đi kèm và không dùng trong trường hợp không có con số đi kèm. Tuy nhiên, đối với trường hợp cửa thứ trong tuần thì có thể dùng hoặc không dùng「に」 
-        - Khi động từ chỉ sự di chuyển, thì trợ từ「へ」được dùng sau danh từ chỉ phương hướng hoặc địa điểm . 
-            - Trợ từ「へ」phát âm là「え」
-        `,
-            ,
+        description: [<>
+        - <strong>N</strong>（時間又は場所 / Thời gian hoặc địa điểm）＋に/へ    <br/>
+        - Dùng để chỉ địa điểm.   <br/>
+        - Dùng để chỉ thời điểm.   <br/>
+        - Dùng để chỉ hướng đến ai.   <br/>
+        - Khi muốn nói về thời điểm mà một hành động nào đó xảy ra, chúng ta thêm trợ từ「に」vào sau danh từ chỉ thời gian.  <br/>
+        - Dùng「に」đối với những hành động diễn ra trong thời gian ngắn.  <br/>
+        - 「に」được dùng khi danh từ chỉ thời gian có con số đi kèm và không dùng trong trường hợp không có con số đi kèm. Tuy nhiên, đối với trường hợp cửa thứ trong tuần thì có thể dùng hoặc không dùng「に」  <br/>
+        - Khi động từ chỉ sự di chuyển, thì trợ từ「へ」được dùng sau danh từ chỉ phương hướng hoặc địa điểm .  <br/>
+            - Trợ từ「へ」phát âm là「え」</>
         ],
         example: [
             [
@@ -214,15 +213,15 @@ var data = [
 
 
 var dataSentences = [
-   {
-  "Chào Hỏi":  {
-        word:"こんにちは",
-        mean:"Xin chào",
-        romaji:"こんにちは",
-    },
+    {
+        "Chào Hỏi": {
+            word: "こんにちは",
+            mean: "Xin chào",
+            romaji: "こんにちは",
+        },
 
 
-   }
+    }
 ]
 
-export  { dataSentences, data}
+export { dataSentences, data }

@@ -3,24 +3,49 @@ import './App.scss';
 import Tab from './components/Tab/Tab';
 import Time from "./components/Time/Time";
 import { data } from './data'
+import datapas from './data/pharse1.json'
 
 const App = () => {
+  const [toggleState, setToggleState] = useState(1);
+  const toggleTab = (index) => {
+    setToggleState(index);
+  };
+
+  const getActiveClass = (index, className) =>
+    toggleState === index ? className : "";
+
   const [toggleActive, setToggleActive] = useState(false);
   const [dataListGrammar, setDataListGrammar] = useState(data);
   const [dataListGrammarTemp, setDataListGrammarTemp] = useState(data);
 
 
+  const [dataListPhar, setDataListPhar] = useState(datapas);
+  const [dataListPharTemp, setDataListPharTemp] = useState(datapas);
+
   const [inputValueSearch, setInputValueSearch] = useState("");
   const handleChange = (e) => {
     let value = e.target.value
-    let listLiter = dataListGrammar.filter((item) => {
+    if (toggleState === 1) {
+      let listLiter = dataListPhar.filter((item) => {
+        return (
+          item.pinyin.toLowerCase().includes(value.toLowerCase()) ||
+          item.vietnamese.toLowerCase().includes(value.toLowerCase())
+        );
+      })
+      setDataListPharTemp(listLiter);
 
-      return (
-        item.title.toLowerCase().includes(value.toLowerCase()) ||
-        item.note.toLowerCase().includes(value.toLowerCase())
-      );
-    })
-    setDataListGrammarTemp(listLiter);
+    }
+    if (toggleState === 2) {
+      let listLiter = dataListGrammar.filter((item) => {
+
+        return (
+          item.title.toLowerCase().includes(value.toLowerCase()) ||
+          item.note.toLowerCase().includes(value.toLowerCase())
+        );
+      })
+      setDataListGrammarTemp(listLiter);
+
+    }
 
     setInputValueSearch(value);
 
@@ -34,6 +59,8 @@ const App = () => {
   }, [inputValueSearch])
   const handleClearText = () => {
     setInputValueSearch("");
+    setDataListGrammarTemp(dataListGrammar);
+
   };
 
   return (
@@ -57,11 +84,12 @@ const App = () => {
             </button>
           </div>
         </div>
-        <Time/>
+        <Time />
       </div>
-      <Tab dataListGrammar={dataListGrammarTemp} />
+      <Tab dataListGrammar={dataListGrammarTemp} toggleTab={toggleTab} getActiveClass={getActiveClass} dataListPharTemp={dataListPharTemp} />
     </div>
   );
 }
+
 
 export default App;

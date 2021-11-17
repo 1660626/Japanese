@@ -110,7 +110,7 @@ const Time = (props) => {
         }, 1000);
     }, []);
 
-    console.log(stateTime)
+ 
     return (
         <div className="clock">
             <p id="time">{stateTime.time}</p>

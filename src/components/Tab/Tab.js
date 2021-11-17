@@ -1,21 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./style.scss";
-// import { data } from '../../data'
-const Tab = ({ dataListGrammar }) => {
+
+const Tab = ({ dataListGrammar, toggleTab, getActiveClass , dataListPharTemp}) => {
+    console.log(dataListGrammar)
     const ref = useRef();
-    const [toggleState, setToggleState] = useState(1);
     // const [dataListGrammar, setDataListGrammar] = useState(data);
 
 
     const [modal, setModal] = useState({ isActive: false, value: {} });
 
-    const toggleTab = (index) => {
-        setToggleState(index);
-    };
-
-    const getActiveClass = (index, className) =>
-        toggleState === index ? className : "";
-
+  
 
     const handleEventClickOpenModal = (id) => {
         let dataID = dataListGrammar.find((element) => {
@@ -27,6 +21,7 @@ const Tab = ({ dataListGrammar }) => {
 
         setModal({ isActive: false, value: {} });
     };
+
     useEffect(() => {
         const checkIfClickedOutside = e => {
             if (modal.isActive && ref.current && !ref.current.contains(e.target)) {
@@ -46,8 +41,8 @@ const Tab = ({ dataListGrammar }) => {
                 <div class="modal-content" ref={ref} >
                     <span class="close" onClick={() => handleEventClickCloseModal()}>×</span>
                     <div class="gr-title">
-                        <div class="grammar-item-title ">～も</div>
-                        <div class="grammar-item-title-mean">Cũng, đến mức, đến cả</div>
+                        <div class="grammar-item-title ">{modal.value.title}</div>
+                        <div class="grammar-item-title-mean">{modal.value.note}</div>
                     </div>
 
                     <div class="item-description mt-2">
@@ -80,6 +75,23 @@ const Tab = ({ dataListGrammar }) => {
             : <>
             </>
     }
+
+
+
+    const playAudio = (id) => {
+
+        document.addEventListener('play', function (e) {
+            var audios = document.getElementsByTagName('audio');
+            for (var i = 0, len = audios.length; i < len; i++) {
+                if (audios[i] !== e.target) {
+                    audios[i].pause();
+                    audios[i].currentTime = 0;
+                }
+            }
+        }, true);
+        const audio = document.getElementById(id);
+        audio.play()
+    };
     return (
         <div className="container-tab mt-5" >
             <div className="tab-list">
@@ -93,7 +105,38 @@ const Tab = ({ dataListGrammar }) => {
             </div>
             <div className="content-container">
                 <div className={`content ${getActiveClass(1, "active-content")}`}>
-                    <h2>Lorem</h2>
+                    <div className="box-result">
+                        <div className="row">
+                            {dataListPharTemp.map((element, index) => (
+                                <div className="col-lg-3 col-md-4 col-sm-6" onClick={() => playAudio(`myAudio${element.id}`)}  key={index} >
+                                    <div className="item-result" data-id="1">
+                                        <div className="item-header">
+                                            <span className="item-title"> {(index+1)+". " + element.japanese}</span>
+                                            <p> {element.pinyin}</p>
+
+                                            <strong className="item-note">{element.vietnamese}</strong>
+                                            <audio id={`myAudio${element.id}`} >
+                                                <source src={require(`../../data/voice/phrase/${element.voice}.mp3`).default} type="audio/mpeg" />
+                                            </audio>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+
+                            {/* <div className="col-lg-3 col-md-4 col-sm-6" onClick={() => playAudio("myAudio2")}  >
+                                <div className="item-result" data-id="1">
+                                    <div className="item-header">
+                                        <p className="item-title"></p>
+                                        <strong className="item-note"></strong>
+                                        <p> </p>
+                                        <audio id="myAudio2" >
+                                            <source src="https://mina.mazii.net/db/phrase/greeting_3.mp3" type="audio/mpeg" />
+                                        </audio>
+                                    </div>
+                                </div>
+                            </div> */}
+                        </div>
+                    </div>
                 </div>
                 <div className={`content ${getActiveClass(2, "active-content")}`}>
                     <div>
@@ -122,7 +165,7 @@ const Tab = ({ dataListGrammar }) => {
                 renderModal()
 
             }
-        </div>
+        </div >
     );
 };
 
