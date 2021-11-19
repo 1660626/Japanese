@@ -35,7 +35,9 @@ const App = () => {
       .getAllPhrase()
       .then((response) => {
         dispatch(
-          setDataPhrase([shuffleData(response.data[0]), response.data[1]])
+          // setDataPhrase([shuffleData(response.data[0]), response.data[1]])
+          setDataPhrase(response.data)
+
         );
       });
 
