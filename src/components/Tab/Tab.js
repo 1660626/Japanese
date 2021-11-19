@@ -89,7 +89,7 @@ const Tab = ({ dataListGrammar, toggleTab, getActiveClass, dataListPharTemp,
         return () => {
             audioTemp.removeEventListener('ended', () => { });
         };
-    }, []);
+    }, [audioTemp]);
 
     useEffect(() => {
         audioTemp.play();
@@ -132,13 +132,7 @@ const Tab = ({ dataListGrammar, toggleTab, getActiveClass, dataListPharTemp,
     }
 
 
-    const tryRequire = (path) => {
-        try {
-            return require(path).default;
-        } catch (err) {
-            return null;
-        }
-    };
+  
     return (
         <div className="container-tab" >
             <div className="tab-list">

@@ -28,7 +28,7 @@ const Time = (props) => {
         // month[10] = "November";
         // month[11] = "December";
 
-        var weekday = new Array(7);
+        var weekday = [];
         weekday[0] = "日";
         weekday[1] = "月";
         weekday[2] = "火";
@@ -37,7 +37,7 @@ const Time = (props) => {
         weekday[5] = "金";
         weekday[6] = "土";
 
-        var month = new Array();
+        var month = [];
         month[0] = "一";
         month[1] = "二";
         month[2] = "三";
