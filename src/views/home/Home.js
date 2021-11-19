@@ -91,12 +91,17 @@ const Home = () => {
         if (valueSelected === 0) {
             console.log(valueSelected)
         } else {
-            let listLiter = dataListPhar[0].filter((item) => {
-                return (
-                    item.category_id ==(valueSelected)
-                );
-            })
-            setDataListPharTemp([listLiter, dataListPhar[1]]);
+            if(dataListPhar)
+            {
+                let listLiter = dataListPhar[0].filter((item) => {
+                    return (
+                        item.category_id ==(valueSelected)
+                    );
+                })
+                setDataListPharTemp([listLiter, dataListPhar[1]]);
+            }
+            
+            
         }
     }, [valueSelected, dataListPhar ])
 
