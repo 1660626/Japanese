@@ -1,7 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
+import { Select } from 'antd';
 import "./style.scss";
 
-const Tab = ({ dataListGrammar, toggleTab, getActiveClass , dataListPharTemp}) => {
+import PhraseService from '../../services/phrase.service'
+
+const { Option } = Select;
+
+const Tab = ({ dataListGrammar, toggleTab, getActiveClass, dataListPharTemp,
+    handleChangeSelected }) => {
     console.log(dataListGrammar)
     const ref = useRef();
     // const [dataListGrammar, setDataListGrammar] = useState(data);
@@ -9,7 +15,6 @@ const Tab = ({ dataListGrammar, toggleTab, getActiveClass , dataListPharTemp}) =
 
     const [modal, setModal] = useState({ isActive: false, value: {} });
 
-  
 
     const handleEventClickOpenModal = (id) => {
         let dataID = dataListGrammar.find((element) => {
@@ -37,33 +42,33 @@ const Tab = ({ dataListGrammar, toggleTab, getActiveClass , dataListPharTemp}) =
     const renderModal = () => {
 
         return modal.isActive ?
-            <div id="myModal" class="modal active"  >
-                <div class="modal-content" ref={ref} >
-                    <span class="close" onClick={() => handleEventClickCloseModal()}>×</span>
-                    <div class="gr-title">
-                        <div class="grammar-item-title ">{modal.value.title}</div>
-                        <div class="grammar-item-title-mean">{modal.value.note}</div>
+            <div id="myModal" className="modal active"  >
+                <div className="modal-content" ref={ref} >
+                    <span className="close" onClick={() => handleEventClickCloseModal()}>×</span>
+                    <div className="gr-title">
+                        <div className="grammar-item-title ">{modal.value.title}</div>
+                        <div className="grammar-item-title-mean">{modal.value.note}</div>
                     </div>
 
-                    <div class="item-description mt-2">
+                    <div className="item-description mt-2">
 
                         {modal.value.description.map((element, index) => (
-                            <>
-                                <div class="gr-use-description display-linebreak" key={index}>
+                            <div key={index}>
+                                <div className="gr-use-description display-linebreak" >
                                     {element}
 
                                 </div>
                                 {modal.value.example[index].map((element1, index1) => (
-                                    <div class="gr-example" key={index1}>
-                                        <div class="example">
+                                    <div className="gr-example" key={index1}>
+                                        <div className="example">
                                             {index1 + 1 + ". "} {element1}
                                         </div>
-                                        <div class="example-mean">
+                                        <div className="example-mean">
                                             {modal.value.exampleMean[index][index1]}
                                         </div>
                                     </div>
 
-                                ))}</>
+                                ))}</div>
                         ))}
 
 
@@ -77,23 +82,65 @@ const Tab = ({ dataListGrammar, toggleTab, getActiveClass , dataListPharTemp}) =
     }
 
 
+    const [audioTemp, setAudioTemp] = useState(new Audio());
 
+    useEffect(() => {
+        audioTemp.addEventListener('ended', () => { });
+        return () => {
+            audioTemp.removeEventListener('ended', () => { });
+        };
+    }, []);
+
+    useEffect(() => {
+        audioTemp.play();
+
+
+    }, [audioTemp])
     const playAudio = (id) => {
-
-        document.addEventListener('play', function (e) {
-            var audios = document.getElementsByTagName('audio');
-            for (var i = 0, len = audios.length; i < len; i++) {
-                if (audios[i] !== e.target) {
-                    audios[i].pause();
-                    audios[i].currentTime = 0;
-                }
+        console.log(audioTemp.currentTime)
+        PhraseService().getVoiceByPhrase(id).then((res) => {
+            setAudioTemp(new Audio(`${PhraseService().API_URL}/voice/${id}`));
+            if (audioTemp.currentTime > 0) {
+                audioTemp.pause();
+                audioTemp.currentTime = 0;
             }
-        }, true);
-        const audio = document.getElementById(id);
-        audio.play()
+        })
+
+        // "../../data/voice/phrase/accommodation_1.mp3"
+
+        // setAudioTemp(new Audio(tryRequire(id)))
+        
+        // console.log(id)
+
+        // console.log(tryRequire(id))
+        // document.addEventListener('play', function (e) {
+        //     var audios = document.getElementsByTagName('audio');
+        //     for (var i = 0, len = audios.length; i < len; i++) {
+        //         if (audios[i] !== e.target) {
+        //             audios[i].pause();
+        //             audios[i].currentTime = 0;
+        //         }
+        //     }
+        // }, true);
+        // const audio = document.getElementById(id);
+        // audio.play()
+    };
+
+    const children = [];
+    for (let i = 10; i < 36; i++) {
+        children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
+    }
+
+
+    const tryRequire = (path) => {
+        try {
+            return require(path).default;
+        } catch (err) {
+            return null;
+        }
     };
     return (
-        <div className="container-tab mt-5" >
+        <div className="container-tab" >
             <div className="tab-list">
                 <div className={`tabs ${getActiveClass(1, "active-tabs")}`} onClick={() => toggleTab(1)}  >
                     文
@@ -105,37 +152,34 @@ const Tab = ({ dataListGrammar, toggleTab, getActiveClass , dataListPharTemp}) =
             </div>
             <div className="content-container">
                 <div className={`content ${getActiveClass(1, "active-content")}`}>
+                    <Select size={"large"} defaultValue={[1]} style={{ width: '100%' }} onChange={handleChangeSelected}>
+                        <Option value={0}>Tất Cả</Option>
+                        {dataListPharTemp && dataListPharTemp[1].map((element, index) => (
+                            <Option key={index + 1} value={index + 1}>{element}</Option>
+
+                        ))}
+                    </Select>
+
                     <div className="box-result">
                         <div className="row">
-                            {dataListPharTemp.map((element, index) => (
-                                <div className="col-lg-3 col-md-4 col-sm-6" onClick={() => playAudio(`myAudio${element.id}`)}  key={index} >
+                            {dataListPharTemp && dataListPharTemp[0].map((element, index) => (
+                                <div className="col-lg-3 col-md-4 col-sm-6" onClick={() => playAudio(`${element.voice}.mp3`)} key={index} >
                                     <div className="item-result" data-id="1">
                                         <div className="item-header">
-                                            <span className="item-title"> {(index+1)+". " + element.japanese}</span>
+                                            <span className="item-title"> {(index + 1) + ". " + element.japanese}</span>
                                             <p> {element.pinyin}</p>
 
                                             <strong className="item-note">{element.vietnamese}</strong>
-                                            <audio id={`myAudio${element.id}`} >
-                                                <source src={require(`../../data/voice/phrase/${element.voice}.mp3`).default} type="audio/mpeg" />
-                                            </audio>
+                                            {/* <audio id={`myAudio${element.id}`} >
+                                                <source src={tryRequire(`../../data/voice/phrase/${element.voice}.mp3`)} type="audio/mpeg" />
+                                            </audio> */}
                                         </div>
                                     </div>
                                 </div>
                             ))}
 
-                            {/* <div className="col-lg-3 col-md-4 col-sm-6" onClick={() => playAudio("myAudio2")}  >
-                                <div className="item-result" data-id="1">
-                                    <div className="item-header">
-                                        <p className="item-title"></p>
-                                        <strong className="item-note"></strong>
-                                        <p> </p>
-                                        <audio id="myAudio2" >
-                                            <source src="https://mina.mazii.net/db/phrase/greeting_3.mp3" type="audio/mpeg" />
-                                        </audio>
-                                    </div>
-                                </div>
-                            </div> */}
                         </div>
+
                     </div>
                 </div>
                 <div className={`content ${getActiveClass(2, "active-content")}`}>
@@ -144,7 +188,7 @@ const Tab = ({ dataListGrammar, toggleTab, getActiveClass , dataListPharTemp}) =
                     </div>
                     <div className="box-result">
                         <div className="row">
-                            {dataListGrammar.map((e, index) => (
+                            {dataListGrammar && dataListGrammar.map((e, index) => (
                                 <div className="col-lg-3 col-md-4 col-sm-6" key={index} onClick={() => handleEventClickOpenModal(e.id)} >
                                     <div className="item-result" data-id="1">
                                         <div className="item-header">

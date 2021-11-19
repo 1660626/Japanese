@@ -82,8 +82,8 @@ var data = [
         title: "います",
         body: "",
         note: "Có... (sở hữu)",
-        description: [<><strong>N</strong> が います  <br />
-            Dùng để biểu thị sự sở hữu đối với người và động vật. Không dùng cho đồ vật.</>],
+        description: [`<><strong>N</strong> が います  <br />
+            Dùng để biểu thị sự sở hữu đối với người và động vật. Không dùng cho đồ vật.</>`],
         example: [
             [
                 "私は猫が二匹います。",
@@ -180,7 +180,7 @@ var data = [
         title: "～に/へ",
         body: "",
         note: "Chỉ hướng, thời điểm",
-        description: [<>
+        description: [`<>
         - <strong>N</strong>（時間又は場所 / Thời gian hoặc địa điểm）＋に/へ    <br/>
         - Dùng để chỉ địa điểm.   <br/>
         - Dùng để chỉ thời điểm.   <br/>
@@ -189,7 +189,7 @@ var data = [
         - Dùng「に」đối với những hành động diễn ra trong thời gian ngắn.  <br/>
         - 「に」được dùng khi danh từ chỉ thời gian có con số đi kèm và không dùng trong trường hợp không có con số đi kèm. Tuy nhiên, đối với trường hợp cửa thứ trong tuần thì có thể dùng hoặc không dùng「に」  <br/>
         - Khi động từ chỉ sự di chuyển, thì trợ từ「へ」được dùng sau danh từ chỉ phương hướng hoặc địa điểm .  <br/>
-            - Trợ từ「へ」phát âm là「え」</>
+            - Trợ từ「へ」phát âm là「え」</>`
         ],
         example: [
             [
@@ -210,7 +210,6 @@ var data = [
         lesson: "N5",
     },
 ];
-
 
 var dataSentences = [
     {
