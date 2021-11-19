@@ -17,7 +17,6 @@ const Home = () => {
     const [formRedux] = useState(
         useSelector((state) => state.phraseSlice),
     ); // get 1 lan
-
     const formReduxData = useSelector((state) => state); // get  nhieu lan
     const [dataListGrammar, setDataListGrammar] = useState(formReduxData.grammarSlice.dataGrammar);
     const [dataListGrammarTemp, setDataListGrammarTemp] = useState(formReduxData.grammarSlice.dataGrammar);
