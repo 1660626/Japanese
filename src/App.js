@@ -44,7 +44,7 @@ const App = () => {
     GrammarService()
       .getAllGrammar()
       .then((response) => {
-        dispatch(setDataGrammar(shuffleData(response.data)));
+        dispatch(setDataGrammar(response.data));
       });
   }, []);
 
