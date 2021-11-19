@@ -126,12 +126,6 @@ const Tab = ({ dataListGrammar, toggleTab, getActiveClass, dataListPharTemp,
         // audio.play()
     };
 
-    const children = [];
-    for (let i = 10; i < 36; i++) {
-        children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
-    }
-
-
   
     return (
         <div className="container-tab" >
@@ -178,7 +172,7 @@ const Tab = ({ dataListGrammar, toggleTab, getActiveClass, dataListPharTemp,
                 </div>
                 <div className={`content ${getActiveClass(2, "active-content")}`}>
                     <div>
-                        合計: {dataListGrammar.length}
+                        合計: {dataListGrammar&&dataListGrammar.length}
                     </div>
                     <div className="box-result">
                         <div className="row">
