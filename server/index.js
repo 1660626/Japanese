@@ -100,13 +100,62 @@ app.get('/api/phrase/voice/:id', (req, res) => {
 
 })
 
-// app.post('/noti', (req, res)=>{
-//   // res.json({"mess": "Hello Would!"})
-//   // const user = req.body;
-//  data.push(JSON.parse(JSON.stringify(req.body)));
+app.post('/api/phrase/', (req, res) => {
+  const user = req.body;
+  console.log(user)
+  //  data.push(JSON.parse(JSON.stringify(req.body)));
 
-//    res.json(data);
-// })
+  //  res.json(data);
+  // fs.stat((`${__dirname}/data/phrase/pharse19.json`), function (err, stat) {
+  //   if (err == null) {
+  //     console.log('File exists');
+  //   } else if (err.code === 'ENOENT') {
+  //     // file does not exist
+  //     fs.writeFile('log.txt', 'Some log\n');
+  //   } else {
+  //     console.log('Some other error: ', err.code);
+  //   }
+  // })
+
+
+  const pathWrite = `${__dirname}/data/phrase/pharse19.json`;
+  try {
+    if (fs.existsSync(pathWrite)) {
+      var json = [];
+
+      fs.readFile(pathWrite, function (err, data) {
+        json = JSON.parse(data)
+        const datatemp = {
+          "id": (+ new Date()).toString(),
+          "category_id": "19",
+
+          "vietnamese_un": "",
+          "pinyin": "",
+
+          "favorite": "",
+          "voice": "",
+          "status": "1"
+        };
+        json.push({ ...datatemp, ...user })
+        fs.writeFileSync(pathWrite, JSON.stringify(json));
+
+      })
+      res.json({ "mess": json })
+
+    } else {
+      fs.writeFileSync(pathWrite, JSON.stringify([]));
+      console.log('The file does not exist.');
+      res.json({ "mess": 'The file does not exist.' })
+
+    }
+  } catch (err) {
+    console.error(err);
+    res.json({ "mess": err })
+
+  }
+
+
+})
 
 // app.get("/noti/:id", async function (req, res) {
 //   const idd = req.params.id || 0;

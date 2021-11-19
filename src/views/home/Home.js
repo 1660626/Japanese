@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import Tab from '../../components/Tab/Tab';
 import Time from "../../components/Time/Time";
+import PhraseService from '../../services/phrase.service'
 
 import { AppContext } from "../../utils/AppContext";
 
@@ -100,30 +101,55 @@ const Home = () => {
         }
     }, [valueSelected, dataListPhar])
 
+    const [inputValueMean, setInputValueMean] = useState("");
+    const handleChangeMean = (e) => {
+
+        let value = e.target.value
+
+        setInputValueMean(value);
+
+    };
+    const writeData = () => {
+        var data ={
+            "japanese": inputValueSearch,
+            "vietnamese": inputValueMean,
+        }
+        PhraseService().postPhrase(data).then((res) => { console.log(res) })
+        setTimeout(() => {
+            PhraseService()
+            .getAllPhrase()
+            .then((response) => {
+              // setDataPhrase([shuffleData(response.data[0]), response.data[1]])
+              // setDataPhrase(response.data)
+              setDataListPhar(response.data)
+              setDataListPharTemp(response.data)
+            });
+          }, 500);
+      
+    }
     return (
         <div className="Home-section">
-                <div className="head">
-                    <div>
-                        <h2 className="font-weight-bold">日本語を検索する </h2>
-                        <div className="inputfield">
-                            <div className="inputText">
-                                <input type="text" placeholder="日本語....." onChange={handleChange} value={inputValueSearch} />
-                                <span className={toggleActive ? "delKey active" : " delKey"} onClick={() => handleClearText()}>&times;</span>
-                            </div>
-
-                            <div className={toggleActive ? "inputTextMean active" : "inputTextMean"}>
-                                <input type="text" placeholder="ベトナム語....." />
-
-                            </div>
-
-                            <button id="btnAdd " className={toggleActive ? "btn custom-btn active" : "btn custom-btn"}>
-                                <i className="fa fa-plus" aria-hidden="true"></i>
-                            </button>
+            <div className="head">
+                <div>
+                    <h2 className="font-weight-bold">日本語を検索する </h2>
+                    <div className="inputfield">
+                        <div className="inputText">
+                            <input type="text" placeholder="日本語....." onChange={handleChange} value={inputValueSearch} />
+                            <span className={toggleActive ? "delKey active" : " delKey"} onClick={() => handleClearText()}>&times;</span>
                         </div>
+
+                        <div className={toggleActive ? "inputTextMean active" : "inputTextMean"} onChange={handleChangeMean} value={inputValueMean}>
+                            <input type="text" placeholder="ベトナム語....." />
+                        </div>
+
+                        <button id="btnAdd " className={toggleActive ? "btn custom-btn active" : "btn custom-btn"} onClick={() => writeData()}>
+                            <i className="fa fa-plus" aria-hidden="true"></i>
+                        </button>
                     </div>
-                    <Time />
                 </div>
-                <Tab dataListGrammar={dataListGrammarTemp} toggleTab={toggleTab} getActiveClass={getActiveClass} dataListPharTemp={dataListPharTemp} handleChangeSelected={handleChangeSelected} />
+                <Time />
+            </div>
+            <Tab dataListGrammar={dataListGrammarTemp} toggleTab={toggleTab} getActiveClass={getActiveClass} dataListPharTemp={dataListPharTemp} handleChangeSelected={handleChangeSelected} />
         </div>
     )
 }
