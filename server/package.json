@@ -2,9 +2,12 @@
   "name": "searchjp",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "6.13.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
