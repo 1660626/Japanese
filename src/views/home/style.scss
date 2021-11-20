@@ -1,7 +1,9 @@
+@import "../../assets/css/scss-variables";
+
 input {
     height: 45px;
-    border: 1px solid #ccc;
-    font-size: 18px;
+    border: 1px solid $light-border;
+    font-size: $fzBody;
     border-radius: 3px;
     padding: 0 0 0 15px;
 }
@@ -35,7 +37,7 @@ input {
         }
 
         .delKey {
-            font-size: 25px;
+            font-size: $fzH2;
             position: absolute;
             right: 10px;
             cursor: pointer;
@@ -47,7 +49,7 @@ input {
         }
         button {
             width: 60px;
-            font-size: 22px;
+            font-size: $fz22;
             border-radius: 3px;
             margin-left: 5px;
             opacity: 0.5;

@@ -109,7 +109,7 @@ const Tab = ({ dataListGrammar, toggleTab, getActiveClass, dataListPharTemp,
         // "../../data/voice/phrase/accommodation_1.mp3"
 
         // setAudioTemp(new Audio(tryRequire(id)))
-        
+
         // console.log(id)
 
         // console.log(tryRequire(id))
@@ -126,7 +126,7 @@ const Tab = ({ dataListGrammar, toggleTab, getActiveClass, dataListPharTemp,
         // audio.play()
     };
 
-  
+
     return (
         <div className="container-tab" >
             <div className="tab-list">
@@ -140,22 +140,24 @@ const Tab = ({ dataListGrammar, toggleTab, getActiveClass, dataListPharTemp,
             </div>
             <div className="content-container">
                 <div className={`content ${getActiveClass(1, "active-content")}`}>
-                    <Select size={"large"} defaultValue={[1]} style={{ width: '100%' }} onChange={handleChangeSelected}>
-                        <Option value={0}>Tất Cả</Option>
-                        {dataListPharTemp && dataListPharTemp[1].map((element, index) => (
-                            <Option key={index + 1} value={index + 1}>{element}</Option>
+                    <div className="row">
+                        <div className="col-lg-2" >
+                            <Select size={"large"} style={{ width: "100%" }} defaultValue={[1]} onChange={handleChangeSelected}>
+                                <Option value={0}>Tất Cả</Option>
+                                {dataListPharTemp && dataListPharTemp[1].map((element, index) => (
+                                    <Option key={index + 1} value={index + 1}>{element}</Option>
 
-                        ))}
-                    </Select>
+                                ))}
+                            </Select>
+                        </div>
 
-                    <div className="box-result">
-                        <div className="row">
-                            {dataListPharTemp && dataListPharTemp[0].map((element, index) => (
-                                <div className="col-lg-3 col-md-4 col-sm-6" onClick={() => playAudio(`${element.voice}.mp3`)} key={index} >
-                                    <div className="item-result" data-id="1">
+                        <div className="col-lg-10" >
+                            <div className="box-result">
+                                {dataListPharTemp && dataListPharTemp[0].map((element, index) => (
+                                    <div className="item-result" onClick={() => playAudio(`${element.voice}.mp3`)} key={index}>
                                         <div className="item-header">
-                                            <span className="item-title"> {(index + 1) + ". " + element.japanese}</span>
-                                            <p> {element.pinyin}</p>
+                                            <span className="item-title"> {(index + 1) + ". " + element.japanese }。</span>
+                                            <span> {element.pinyin}</span>
 
                                             <strong className="item-note">{element.vietnamese}</strong>
                                             {/* <audio id={`myAudio${element.id}`} >
@@ -163,16 +165,17 @@ const Tab = ({ dataListGrammar, toggleTab, getActiveClass, dataListPharTemp,
                                             </audio> */}
                                         </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
 
+
+                            </div>
                         </div>
-
                     </div>
+
                 </div>
                 <div className={`content ${getActiveClass(2, "active-content")}`}>
                     <div>
-                        合計: {dataListGrammar&&dataListGrammar.length}
+                        合計: {dataListGrammar && dataListGrammar.length}
                     </div>
                     <div className="box-result">
                         <div className="row">
@@ -182,7 +185,7 @@ const Tab = ({ dataListGrammar, toggleTab, getActiveClass, dataListPharTemp,
                                         <div className="item-header">
                                             <p className="item-title">({index + 1}) {e.title}</p>
                                             <strong className="item-note">{e.note}</strong>
-                                            <p> {e.lesson}</p>
+                                            <p> ({e.lesson})</p>
                                         </div>
                                     </div>
                                 </div>

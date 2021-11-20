@@ -1,3 +1,5 @@
+@import "../../assets/css/scss-variables";
+
 .container-tab {
     .tab-list {
         height: 50px;
@@ -5,7 +7,6 @@
         flex-wrap: wrap;
         font-size: 18px;
         .tabs {
-            background-color: #fff;
             font-family: "RocknRoll One", cursive;
             border-radius: 20px 20px 0 0;
             width: 20%;
@@ -13,23 +14,24 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            font-size: 24px;
+            font-size: $fzH2;
             &:hover {
-                background: #eeeded;
+                background: $light-border;
             }
             &.active-tabs {
-                border: 1px dashed red;
+                border: 1px dashed $bright-red;
                 border-width: 1px 1px 0 1px;
             }
         }
     }
 
     .content-container {
+        background-color: $light-border;
+
         .content {
             display: none;
-            background-color: #fff;
             padding: 10px;
-            border: 1px dashed red;
+            border: 1px dashed $bright-red;
             &.active-content {
                 display: block;
             }
@@ -38,28 +40,29 @@
                 overflow-y: auto;
                 overflow-x: hidden;
                 .item-result {
+                    background-color: #ffffff;
                     list-style: none;
-                    background-color: #dde4f1;
-                    border-radius: 15px;
                     margin: 10px;
                     padding: 20px;
-                    transition: all 0.3s ease-in-out;
+                    transition: all 0.1s ease;
                     cursor: pointer;
                     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
                     .item-header {
-                        // display: flex;
+                        display: grid;
                         // align-items: center;
                         .item-title {
-                            color: #d21000;
-                            font-size: 20px;
+                            color: $bright-red;
+                            font-size: $fzH3;
                             font-family: "RocknRoll One", cursive;
                             overflow-wrap: break-word;
                         }
-                        span {
+                        .item-none{
+                            color: $black;
                         }
+                       
                     }
                     &:hover {
-                        background-color: #c4c4c4;
+                        border-left: 5px solid $bright-red;
                     }
                 }
             }
@@ -102,7 +105,7 @@
         font-weight: bold;
         &:hover,
         &:focus {
-            color: #000;
+            color: $black;
             text-decoration: none;
             cursor: pointer;
         }
