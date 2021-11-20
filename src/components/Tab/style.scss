@@ -1,9 +1,13 @@
 .container-tab {
+    background-color: blue;
+    
     .tab-list {
         height: 50px;
         display: flex;
         flex-wrap: wrap;
         font-size: 18px;
+        background-color: red;
+
         .tabs {
             background-color: #fff;
             font-family: "RocknRoll One", cursive;
