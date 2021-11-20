@@ -1,0 +1,20 @@
+.clock {
+    font-family: "RocknRoll One", cursive;
+    z-index: 1;
+    border-radius: 50px;
+    text-align: right;
+    #time {
+        font-size: 20px;
+        color: #004aad;
+    }
+
+    #day {
+        font-size: 25px;
+        color: #6a6efb;
+    }
+
+    #date {
+        font-size: 20px;
+        color: #ff5757;
+    }
+}

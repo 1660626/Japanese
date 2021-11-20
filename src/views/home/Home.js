@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Tab from '../../components/Tab/Tab';
 import Time from "../../components/Time/Time";
 import PhraseService from '../../services/phrase.service'
+import "./style.scss";
 
 import { AppContext } from "../../utils/AppContext";
 
@@ -36,8 +37,8 @@ const Home = () => {
         if (toggleState === 1) {
             let listLiter = dataListPhar[0].filter((item) => {
                 return (
-                    item.pinyin.toLowerCase().includes(value.toLowerCase()) ||
-                    item.vietnamese.toLowerCase().includes(value.toLowerCase())
+                    (item.pinyin?.toLowerCase().includes(value.toLowerCase())) ||
+                    (item.vietnamese?.toLowerCase().includes(value.toLowerCase()))
                 );
             })
             setDataListPharTemp([listLiter, dataListPhar[1]]);
@@ -86,7 +87,7 @@ const Home = () => {
         setDataListPharTemp(dataListPhar);
 
         if (valueSelected === 0) {
-            console.log(valueSelected)
+            // console.log(valueSelected)
         } else {
             if (dataListPhar) {
                 let listLiter = dataListPhar[0].filter((item) => {
@@ -110,22 +111,22 @@ const Home = () => {
 
     };
     const writeData = () => {
-        var data ={
+        var data = {
             "japanese": inputValueSearch,
             "vietnamese": inputValueMean,
         }
         PhraseService().postPhrase(data).then((res) => { console.log(res) })
         setTimeout(() => {
             PhraseService()
-            .getAllPhrase()
-            .then((response) => {
-              // setDataPhrase([shuffleData(response.data[0]), response.data[1]])
-              // setDataPhrase(response.data)
-              setDataListPhar(response.data)
-              setDataListPharTemp(response.data)
-            });
-          }, 500);
-      
+                .getAllPhrase()
+                .then((response) => {
+                    // setDataPhrase([shuffleData(response.data[0]), response.data[1]])
+                    // setDataPhrase(response.data)
+                    setDataListPhar(response.data)
+                    setDataListPharTemp(response.data)
+                });
+        }, 500);
+
     }
     return (
         <div className="Home-section">

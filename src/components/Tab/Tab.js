@@ -8,7 +8,7 @@ const { Option } = Select;
 
 const Tab = ({ dataListGrammar, toggleTab, getActiveClass, dataListPharTemp,
     handleChangeSelected }) => {
-    console.log(dataListGrammar)
+    // console.log(dataListGrammar)
     const ref = useRef();
     // const [dataListGrammar, setDataListGrammar] = useState(data);
 
@@ -97,7 +97,7 @@ const Tab = ({ dataListGrammar, toggleTab, getActiveClass, dataListPharTemp,
 
     }, [audioTemp])
     const playAudio = (id) => {
-        console.log(audioTemp.currentTime)
+        // console.log(audioTemp.currentTime)
         PhraseService().getVoiceByPhrase(id).then((res) => {
             setAudioTemp(new Audio(`${PhraseService().API_URL}/voice/${id}`));
             if (audioTemp.currentTime > 0) {
