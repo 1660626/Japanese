@@ -130,13 +130,14 @@ app.post('/api/phrase/', (req, res) => {
   // })
 
 
-  const pathWrite = `${__dirname}/data/phrase/pharse19.json`;
+  const pathWrite = `${__dirname}/data/phrase/phrase19.json`;
   try {
     if (fs.existsSync(pathWrite)) {
       var json = [];
 
       fs.readFile(pathWrite, function (err, data) {
         json = JSON.parse(data)
+
         const datatemp = {
           "id": (+ new Date()).toString(),
           "category_id": "19",
@@ -149,6 +150,8 @@ app.post('/api/phrase/', (req, res) => {
           "status": "1"
         };
         json.push({ ...datatemp, ...user })
+        console.log(json)
+
         fs.writeFileSync(pathWrite, JSON.stringify(json));
 
       })
