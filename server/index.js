@@ -152,10 +152,13 @@ app.post('/api/phrase/', (req, res) => {
         json.push({ ...datatemp, ...user })
         console.log(json)
 
-        fs.writeFileSync(pathWrite, JSON.stringify(json));
+        fs.writeFile(pathWrite, JSON.stringify(json) ,function (err, data) {
+          data_phrase[0] = data_phrase[0].concat({ ...datatemp, ...user });
+          res.json({ "mess": json })
+         
+        });
 
       })
-      res.json({ "mess": json })
 
     } else {
       fs.writeFileSync(pathWrite, JSON.stringify([]));

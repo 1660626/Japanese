@@ -39,6 +39,7 @@ const App = () => {
     PhraseService()
       .getAllPhrase()
       .then((response) => {
+        console.log(response)
         // setDataPhrase([shuffleData(response.data[0]), response.data[1]])
         // setDataPhrase(response.data)
         setDataListPhar(response.data)
