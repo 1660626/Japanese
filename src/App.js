@@ -34,7 +34,7 @@ const App = () => {
   const [dataListGrammarTemp, setDataListGrammarTemp] = useState();
 
   useEffect(() => {
-    setTimeout(() => setLoading(true), 500);
+    let timer1 = setTimeout(() => setLoading(true), 500);
 
     PhraseService()
       .getAllPhrase()
@@ -53,6 +53,9 @@ const App = () => {
         setDataListGrammar(response.data)
         setDataListGrammarTemp(response.data)
       });
+    return () => {
+      clearTimeout(timer1);
+    };
   }, []);
 
   return (
@@ -63,13 +66,15 @@ const App = () => {
             <img src={logo} className="App-logo" alt="logo" />
           </header>
         ) : (
-          <AppContext.Provider value={{dataListPhar, setDataListPhar,
+          <AppContext.Provider value={{
+            dataListPhar, setDataListPhar,
             dataListPharTemp,
             setDataListPharTemp,
             dataListGrammar,
             setDataListGrammar,
             dataListGrammarTemp,
-            setDataListGrammarTemp}}>
+            setDataListGrammarTemp
+          }}>
             <Home />
 
           </AppContext.Provider>

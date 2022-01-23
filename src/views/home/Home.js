@@ -4,9 +4,11 @@ import Time from "../../components/Time/Time";
 import PhraseService from '../../services/phrase.service'
 import "./style.scss";
 
-import { AppContext } from "../../utils/AppContext";
+import { AppContext ,UserProvider, UserConsumer } from "../../utils/AppContext";
 
 const Home = () => {
+        // console.log(<UserConsumer>{(context) => context}</UserConsumer>)
+
     const { dataListPhar, setDataListPhar,
         dataListPharTemp,
         setDataListPharTemp,
@@ -14,7 +16,6 @@ const Home = () => {
         setDataListGrammar,
         dataListGrammarTemp,
         setDataListGrammarTemp } = useContext(AppContext);
-
     const [toggleState, setToggleState] = useState(1);
     const [toggleActive, setToggleActive] = useState(false);
 
